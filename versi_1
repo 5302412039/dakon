@@ -1,0 +1,207 @@
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class view extends JFrame{	
+	
+	int dakon[] = new int[14];
+	
+	private JLabel[]papan1 = new JLabel[14];
+	public JLabel[]createButton(){
+		JLabel[]papan = new JLabel[14];
+		for(int i=0;i<=13;i++){
+			papan[i]= new JLabel();
+		}
+		
+		return papan;	
+	}
+	
+	private JTextField index;
+	
+	public view(){
+		gambar();
+		
+	}
+	
+	public void gambar(){
+		setTitle("Dakon");
+		setBounds(10, 10, 750, 450);
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 11, 774, 492);
+		getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		papan1[0] = new JLabel();
+		papan1[0].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		papan1[0].setText("0");
+		papan1[0].setBounds(30, 150, 44, 20);
+		panel.add(papan1[0]);
+		
+		papan1[1] = new JLabel();
+		papan1[1].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		papan1[1].setText("4");
+		papan1[1].setBounds(100, 200, 44, 20);
+		panel.add(papan1[1]);
+		
+		papan1[2] = new JLabel();
+		papan1[2].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		papan1[2].setText("4");
+		papan1[2].setBounds(200, 200, 44, 20);
+		panel.add(papan1[2]);
+		
+		papan1[3] = new JLabel();
+		papan1[3].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		papan1[3].setText("4");
+		papan1[3].setBounds(300, 200, 44, 20);
+		panel.add(papan1[3]);
+		
+		papan1[4] = new JLabel();
+		papan1[4].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		papan1[4].setText("4");
+		papan1[4].setBounds(400, 200, 44, 20);
+		panel.add(papan1[4]);
+		
+		papan1[5] = new JLabel();
+		papan1[5].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		papan1[5].setText("4");
+		papan1[5].setBounds(500, 200, 44, 20);
+		panel.add(papan1[5]);
+		
+		papan1[6] = new JLabel();
+		papan1[6].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		papan1[6].setText("4");
+		papan1[6].setBounds(600, 200, 44, 20);
+		panel.add(papan1[6]);
+		
+		papan1[7] = new JLabel();
+		papan1[7].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		papan1[7].setText("0");
+		papan1[7].setBounds(670, 150, 44, 20);
+		panel.add(papan1[7]);
+		
+		
+		papan1[8] = new JLabel();
+		papan1[8].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		papan1[8].setText("4");
+		papan1[8].setBounds(600, 100, 44, 20);
+		panel.add(papan1[8]);
+		
+		papan1[9] = new JLabel();
+		papan1[9].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		papan1[9].setText("4");
+		papan1[9].setBounds(500, 100, 44, 20);
+		panel.add(papan1[9]);
+		
+		papan1[10] = new JLabel();
+		papan1[10].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		papan1[10].setText("4");
+		papan1[10].setBounds(400, 100, 44, 20);
+		panel.add(papan1[10]);
+		
+		papan1[11] = new JLabel();
+		papan1[11].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		papan1[11].setText("4");
+		papan1[11].setBounds(300, 100, 44, 20);
+		panel.add(papan1[11]);
+		
+		papan1[12] = new JLabel();
+		papan1[12].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		papan1[12].setText("4");
+		papan1[12].setBounds(200, 100, 44, 20);
+		panel.add(papan1[12]);
+		
+		papan1[13] = new JLabel();
+		papan1[13].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		papan1[13].setText("4");
+		papan1[13].setBounds(100, 100, 44, 20);
+		panel.add(papan1[13]);
+		
+		JLabel label_masuk = new JLabel("Mulai dengan index : ");
+		label_masuk.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		label_masuk.setBounds(70, 300, 209, 20);
+		panel.add(label_masuk);
+		
+		index = new JTextField();
+		index.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		index.setBounds(212, 300, 44, 20);
+		panel.add(index);
+		
+		JButton user = new JButton("USER");
+		user.addActionListener(new ActionListener(){
+			
+			public void actionPerformed(ActionEvent e){
+
+				
+				inisialisasi();
+				int indexnya = Integer.parseInt(index.getText());
+				putar(indexnya);
+				
+				for(int i=13;i>7;i--){
+					if(dakon[i]>=4){
+						papan1[i].setText(String.valueOf(dakon[i]));
+					}
+					else
+					{
+						papan1[i].setText(String.valueOf(dakon[i]));
+					}
+				}
+				papan1[0].setText(String.valueOf(dakon[0]));
+				papan1[7].setText(String.valueOf(dakon[7]));
+				for(int i=1;i<7;i++){
+		            if(dakon[i]>=4){
+		            	papan1[i].setText(String.valueOf(dakon[i]));
+		            }
+		            else{
+		            	papan1[i].setText(String.valueOf(dakon[i]));
+		            }
+			}
+		}
+		}
+		);
+		user.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		user.setBounds(305, 300, 100, 20);
+		panel.add(user);
+		}
+		
+		public void inisialisasi(){
+	for(int i=0;i<14;i++){
+        dakon[i] = 4;
+    }
+    dakon[0] = 0;
+    dakon[7] = 0;
+	}
+	
+	public void putar(int index){
+		int jumlah;
+		while (true){
+			jumlah = dakon[index];
+			dakon[index] = 0;
+			
+			for(int i=jumlah;i>0;i--){
+				index++;
+				if(index>13){
+					index = 0;
+				}
+				dakon[index]+=1;
+			}
+			if(dakon[index]==1){
+				break;
+			}
+			if(index==0||index==7){
+				break;
+			}
+		}
+		
+	}
+	
+}
