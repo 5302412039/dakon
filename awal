@@ -1,0 +1,77 @@
+package dakon;
+import java.util.Scanner;
+
+public class Dakon {
+    int dakon [] = new int[14];
+    Scanner scan = new Scanner(System.in);
+
+    void inisialisasi(){
+        for(int i=0;i<14;i++){
+            dakon[i] = 4;
+        }
+        dakon[0] = 0;
+        dakon[7] = 0;
+    }
+
+    void print(){
+        System.out.print("  |");
+
+        for(int i=13;i>7;i--){
+            if(dakon[i]>=4){
+                System.out.print(dakon[i]+"|");
+            }else{
+                System.out.print(dakon[i]+"|");
+            }
+        }
+
+        System.out.println("");
+        System.out.println("|"+dakon[0]+"|\t\t|"+dakon[7]+"|");
+        System.out.print("  |");
+
+        for(int i=1;i<7;i++){
+            if(dakon[i]>=10){
+                System.out.print(dakon[i] + "|");
+            }else{
+                System.out.print(dakon[i] + "|");
+            }
+        }
+        System.out.println("");
+    }
+
+    void putar (int index){
+        int jum;
+        while(true){
+            jum = dakon[index];
+            dakon[index] = 0;
+
+            for(int i=jum;i>0;i--){
+                index++;
+                if(index>13){
+                    index=0;
+                }
+                dakon[index]+=1;
+            }
+            if(dakon[index]==1){
+                break;
+            }
+            if(index == 0 || index == 7){
+                break;
+            }
+            print();
+            System.out.println("_________________________");
+        }
+        System.out.println("Berhenti pada Index "+index);
+    }
+
+    public static void main(String[] args) {
+        Dakon obj1 = new Dakon();
+
+        obj1.inisialisasi();
+        obj1.print();
+        System.out.print("Mulai dengan Index>> ");
+        int index = obj1.scan.nextInt();
+        obj1.putar(index);
+        obj1.print();
+    }
+}
+
