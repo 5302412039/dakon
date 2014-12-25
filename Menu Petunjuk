@@ -1,0 +1,68 @@
+package dakon;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+
+
+public class Petunjuk extends JFrame {
+
+	private JPanel contentPane;
+	private JButton back = new JButton();
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Petunjuk frame = new Petunjuk();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	public Petunjuk() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(47, 30, 1025, 600);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
+		setResizable(false);
+		
+		JPanel panel = new JPanel();
+		contentPane.add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
+		
+		back.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				main();
+			}
+		});
+		//back.setIcon(new ImageIcon(Petunjuk.class.getResource("/PTI/back_bt.jpg")));
+		back.setBounds(788, 489, 140, 58);
+		panel.add(back);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(Petunjuk.class.getResource("/PTI/aturan n.jpg")));
+		lblNewLabel.setBounds(-15, -115, 1510, 800);
+		panel.add(lblNewLabel);
+	}
+	
+	public void main(){
+		Awal a = new Awal();
+		a.show();
+		this.dispose();
+	}
+
+}
