@@ -1,0 +1,445 @@
+package dakon;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Scanner;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+public class MainDakon extends JFrame {
+	private JPanel contentPane;
+	private JButton menu = new JButton();
+	int dakon[] = new int[10];
+	
+	private JButton[]papan1 = new JButton[10];
+	public JButton[]createButton(){
+		JButton[]papan1 = new JButton[10];
+		for(int i=0;i<=9;i++){
+			papan1[i]= new JButton();
+		}
+		
+		return papan1;	
+	}
+	
+	private JButton Com;
+	private int langkahA=0;
+	private int langkahB=0;
+	private int langkahC=0;
+	private int langkahD=0;
+	private JLabel indexDakon;
+	private int indexnya;
+	
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MainDakon frame = new MainDakon();
+					frame.setVisible(true);
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	public MainDakon() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(47, 30, 1025, 600);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
+		setResizable(false);
+		
+		JPanel panel = new JPanel();
+		contentPane.add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
+		
+		papan1[0] = new JButton();
+		papan1[0].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		papan1[0].setBackground(Color.yellow);
+		papan1[0].setText("0");
+		papan1[0].setEnabled(false);
+		papan1[0].setBounds(50, 300, 70, 50);
+		panel.add(papan1[0]);
+		
+		papan1[1] = new JButton();
+		papan1[1].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		papan1[1].setText("4");
+		papan1[1].setBackground(Color.orange);
+		papan1[1].setBounds(214, 378, 50, 50);
+		papan1[1].addActionListener(new ActionListener(){
+			
+			public void actionPerformed(ActionEvent e){
+				inisialisasi();
+				putar(1);
+				setDakon();
+				tambahLangkahA();
+				indexDakon.setText("1");
+				
+		}
+		}
+		);
+		panel.add(papan1[1]);
+		
+		papan1[2] = new JButton();
+		papan1[2].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		papan1[2].setBackground(Color.orange);
+		papan1[2].setText("4");
+		papan1[2].setBounds(384, 384, 50, 50);
+		papan1[2].addActionListener(new ActionListener(){
+			
+			public void actionPerformed(ActionEvent e){
+
+				inisialisasi();
+				putar(2);
+				setDakon();
+				tambahLangkahB();
+				indexDakon.setText("2");
+		}
+		}
+		);
+		panel.add(papan1[2]);
+		
+		papan1[3] = new JButton();
+		papan1[3].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		papan1[3].setBackground(Color.orange);
+		papan1[3].setText("4");
+		papan1[3].setBounds(554, 384, 50, 50);
+		papan1[3].addActionListener(new ActionListener(){
+			
+			public void actionPerformed(ActionEvent e){
+				
+				inisialisasi();
+				putar(3);
+				setDakon();
+				tambahLangkahC();
+				indexDakon.setText("3");
+		}
+		}
+		);
+		panel.add(papan1[3]);
+		
+		papan1[4] = new JButton();
+		papan1[4].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		papan1[4].setBackground(Color.orange);
+		papan1[4].setText("4");
+		papan1[4].setBounds(724, 384, 50, 50);
+		papan1[4].addActionListener(new ActionListener(){
+			
+			public void actionPerformed(ActionEvent e){
+				inisialisasi();
+				putar(4);
+				setDakon();
+				tambahLangkahD();
+				indexDakon.setText("4");
+		}
+		}
+		);
+		panel.add(papan1[4]);
+		
+		papan1[5] = new JButton();
+		papan1[5].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		papan1[5].setBackground(Color.yellow);
+		papan1[5].setText("0");
+		papan1[5].setEnabled(false);
+		papan1[5].setBounds(874, 300, 70, 50);
+		panel.add(papan1[5]);
+		
+		papan1[6] = new JButton();
+		papan1[6].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		papan1[6].setBackground(Color.orange);
+		papan1[6].setText("4");
+		papan1[6].setEnabled(false);
+		papan1[6].setBounds(724, 225, 50, 50);
+		panel.add(papan1[6]);
+		
+		papan1[7] = new JButton();
+		papan1[7].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		papan1[7].setBackground(Color.orange);
+		papan1[7].setText("4");
+		papan1[7].setEnabled(false);
+		papan1[7].setBounds(553, 220, 50, 50);
+		panel.add(papan1[7]);
+		
+		papan1[8] = new JButton();
+		papan1[8].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		papan1[8].setBackground(Color.orange);
+		papan1[8].setText("4");
+		papan1[8].setEnabled(false);
+		papan1[8].setBounds(380, 220, 50, 50);
+		panel.add(papan1[8]);
+		
+		papan1[9] = new JButton();
+		papan1[9].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		papan1[9].setText("4");
+		papan1[9].setEnabled(false);
+		papan1[9].setBounds(208, 220, 50, 50);
+		papan1[9].setBackground(Color.orange);
+		panel.add(papan1[9]);
+		
+		indexDakon = new JLabel();
+		indexDakon.setBounds(74, 420, 50, 50);
+		indexDakon.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		indexDakon.setText("Index");
+		panel.add(indexDakon);
+		
+		Com = new JButton("COMPUTER");
+		Com.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Com.setEnabled(true);
+		Com.setBounds(50, 100, 148, 50);
+		Com.setBackground(Color.darkGray);
+		Com.setIcon(new ImageIcon(Petunjuk.class.getResource("/PTI/kompt.jpg")));
+		Com.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				indexnya=Integer.parseInt(indexDakon.getText());
+				if(langkahA==1&&langkahB==0&&langkahC==0&&langkahD==0&&indexnya==1){
+					putarCo(8);
+				}
+				else if(langkahA==2&&langkahB==0&&langkahC==0&&langkahD==0&&indexnya==1){
+					putarCo(6);
+				}
+				else if(langkahA==2&&langkahB==1&&langkahC==0&&langkahD==0&&indexnya==2){
+					putarCo(6);
+				}
+				else if(langkahA==3&&langkahB==1&&langkahC==0&&langkahD==0&&indexnya==1){
+					putarCo(6);
+				}
+				else if(langkahA==3&&langkahB==2&&langkahC==0&&langkahD==0&&indexnya==2){
+					putarCo(9);
+				}
+				else if(langkahA==3&&langkahB==2&&langkahC==1&&langkahD==0&&indexnya==3){
+					putarCo(6);
+				}
+				else if(langkahA==3&&langkahB==2&&langkahC==0&&langkahD==1&&indexnya==4){
+					putarCo(7);
+				}
+				else if(langkahA==2&&langkahB==2&&langkahC==0&&langkahD==0&&indexnya==2){
+					putarCo(6);
+				}
+				else if(langkahA==3&&langkahB==2&&langkahC==0&&langkahD==0&&indexnya==1){
+					putarCo(9);
+				}
+				else if(langkahA==2&&langkahB==0&&langkahC==0&&langkahD==1&&indexnya==4){
+					putarCo(9);
+				}
+				else if(langkahA==3&&langkahB==0&&langkahC==0&&langkahD==1&&indexnya==1){
+					putarCo(9);
+				}
+				else if(langkahA==3&&langkahB==0&&langkahC==1&&langkahD==1&&indexnya==3){
+					putarCo(8);
+				}
+
+				setDakon();
+				papan1[1].setEnabled(true);
+				papan1[2].setEnabled(true);
+				papan1[3].setEnabled(true);
+				papan1[4].setEnabled(true);
+				papan1[6].setEnabled(false);
+				papan1[7].setEnabled(false);
+				papan1[8].setEnabled(false);
+				papan1[9].setEnabled(false);
+			}
+			});
+		panel.add(Com);
+		
+		
+		
+		menu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				main();
+			}
+		});
+		menu.setIcon(new ImageIcon(Petunjuk.class.getResource("/PTI/menuu.jpg")));
+		menu.setBounds(892, 38, 112, 60);
+		panel.add(menu);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(MainDakon.class.getResource("/PTI/papan dakon.jpg")));
+		label.setBounds(-15, -115, 1510, 800);
+		panel.add(label);
+		
+	}
+	
+	public void inisialisasi(){
+		for(int i=0;i<10;i++){
+	        dakon[i] = Integer.parseInt(papan1[i].getText());
+	    }
+	    dakon[0] = Integer.parseInt(papan1[0].getText());
+	    dakon[5] = Integer.parseInt(papan1[5].getText());
+		}
+		
+		public void putar(int index){
+			int jumlah;
+			int n;
+			
+			while (true){
+				jumlah = dakon[index];
+				dakon[index] = 0;
+				
+				for(n=jumlah;n>0;n--){
+					index++;
+					
+					if(index>9){
+						index = 0;
+					}
+					if(index!=0){
+						dakon[index]+=1;
+					}
+					if(index==0){
+						n+=1;
+					}
+					
+				}
+				if(dakon[index]==1){
+					if(index==1){
+						dakon[5]+=dakon[9];
+						dakon[9]=0;
+					}
+					else if(index==2){
+						dakon[5]+=dakon[8];
+						dakon[8]=0;
+					}
+					else if(index==3){
+						dakon[5]+=dakon[7];
+						dakon[7]=0;
+					}
+					else if(index==4){
+						dakon[5]+=dakon[6];
+						dakon[6]=0;
+					}
+					break;
+				}
+				if(index>9){
+					index = 0;
+				}
+				if(index==0||index==5){
+					break;
+					
+				} 
+			}
+			
+			
+		}
+		
+		
+		public void putarCo(int index){
+			int jumlah;
+			int i;
+			while (true){
+				
+				jumlah = dakon[index];
+				dakon[index] = 0;
+				
+				for(i=jumlah;i>0;i--){
+					index++;
+					
+					if(index>9){
+						index=0;
+					}
+					
+					if(index!=5){
+						dakon[index]+=1;
+					}
+					if(index==5){
+						i+=1;
+					}
+
+				}
+				if(dakon[index]==1){
+					if(index==6){
+						dakon[0]+=dakon[4];
+						dakon[4]=0;
+					}
+					else if(index==7){
+						dakon[0]+=dakon[3];
+						dakon[3]=0;
+					}
+					else if(index==8){
+						dakon[0]+=dakon[2];
+						dakon[2]=0;
+					}
+					else if(index==9){
+						dakon[0]+=dakon[1];
+						dakon[1]=0;
+					}
+					break;
+					
+				}
+				if(dakon[1]==0&&dakon[2]==0&&dakon[3]==0&dakon[4]==0){
+					for(int x=6;x<8;x++){
+						dakon[0]+=dakon[x];
+					}
+				}
+				if(index>9){
+					index=0;
+				}
+				
+				if(index==0||index==5){
+					break;
+					
+				} 
+			}
+			
+		}
+		
+		public void setDakon(){
+			for(int i=9;i>5;i--){
+				if(dakon[i]>=4){
+					papan1[i].setText(String.valueOf(dakon[i]));
+				}
+				else
+				{
+					papan1[i].setText(String.valueOf(dakon[i]));
+				}
+			}
+			papan1[0].setText(String.valueOf(dakon[0]));
+			papan1[5].setText(String.valueOf(dakon[5]));
+			for(int i=1;i<5;i++){
+	            if(dakon[i]>=4){
+	            	papan1[i].setText(String.valueOf(dakon[i]));
+	            }
+	            else{
+	            	papan1[i].setText(String.valueOf(dakon[i]));
+	            }
+		}
+		papan1[1].setEnabled(false);
+		papan1[2].setEnabled(false);
+		papan1[3].setEnabled(false);
+		papan1[4].setEnabled(false);
+		papan1[6].setEnabled(true);
+		papan1[7].setEnabled(true);
+		papan1[8].setEnabled(true);
+		papan1[9].setEnabled(true);
+		
+		}
+		
+		public void tambahLangkahA(){
+			langkahA=langkahA+1;
+		}
+		public void tambahLangkahB(){
+			langkahB=langkahB+1;
+		}
+		public void tambahLangkahC(){
+			langkahC=langkahC+1;
+		}
+		public void tambahLangkahD(){
+			langkahD=langkahD+1;
+		}
+		public void main(){
+			Awal a = new Awal();
+			a.show();
+			this.dispose();
+		}
+}
