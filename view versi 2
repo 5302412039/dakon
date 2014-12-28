@@ -1,0 +1,238 @@
+package dakon;
+
+
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class View_versi2 extends JFrame{	
+	
+	int dakonuser[] = new int[4];
+	int lumbunguser;
+	int dakoncomp[]= new int[4];
+	int lumbungcom;
+	
+	private JButton[]lubUser = new JButton[4];
+	public JButton[]createButtonUser(){
+		JButton[]lubUser = new JButton[4];
+		for(int i=0;i<=5;i++){
+			lubUser[i]= new JButton();
+		}
+		
+		return lubUser;	
+	}
+	
+	private JButton[]lubCom = new JButton[4];
+	public JButton[]createButtonCom(){
+		JButton[]lubCom = new JButton[4];
+		for(int i=0;i<=5;i++){
+			lubCom[i]= new JButton();
+		}
+		
+		return lubCom;	
+	}
+	
+	private JLabel lumUser;
+	private JLabel lumCom;
+	
+	
+	public View_versi2(){
+		gambar();
+		
+	}
+	
+	public void gambar(){
+		setTitle("Dakon");
+		setBounds(10, 10, 750, 450);
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 11, 774, 492);
+		getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		lumCom = new JLabel();
+		lumCom.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lumCom.setText("0");
+		lumCom.setBounds(60, 150, 45, 30);
+		panel.add(lumCom);
+		
+		lubUser[0] = new JButton();
+		lubUser[0].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lubUser[0].setText("4");
+		lubUser[0].addActionListener(new ActionListener(){
+			
+		public void actionPerformed(ActionEvent e){
+			inisialisasi();
+		int indexnya = 0;
+		putar(indexnya);
+		
+		for(int i=13;i>7;i--){
+			if(dakonuser[i]>=4){
+				lubUser[i].setText(String.valueOf(lubUser[i]));
+			}
+			else
+			{
+				lubUser[i].setText(String.valueOf(dakonuser[i]));
+			}
+		}
+		lumUser.setText(String.valueOf(lumbunguser));
+		for(int i=1;i<7;i++){
+            if(dakonuser[i]>=4){
+            	lubUser[i].setText(String.valueOf(dakonuser[i]));
+            }
+            else{
+            	lubUser[i].setText(String.valueOf(dakonuser[i]));
+            }
+		}
+	}
+	}
+	);
+		lubUser[0].setBounds(130, 200, 50, 50);
+		panel.add(lubUser[0]);
+		
+		lubUser[1] = new JButton();
+		lubUser[1].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lubUser[1].setText("4");
+		lubUser[1].setBounds(230, 200, 50, 50);
+		panel.add(lubUser[1]);
+		
+		lubUser[2] = new JButton();
+		lubUser[2].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lubUser[2].setText("4");
+		lubUser[2].setBounds(330, 200, 50, 50);
+		panel.add(lubUser[2]);
+		
+		lubUser[3] = new JButton();
+		lubUser[3].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lubUser[3].setText("4");
+		lubUser[3].setBounds(430, 200, 50, 50);
+		panel.add(lubUser[3]);
+		
+
+		lumUser = new JLabel();
+		lumUser.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lumUser.setText("0");
+		lumUser.setBounds(530, 150, 45, 30);
+		panel.add(lumUser);
+		
+		lubCom[3] = new JButton();
+		lubCom[3].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lubCom[3].setText("4");
+		lubCom[3].setBounds(430, 100, 50, 50);
+		panel.add(lubCom[3]);
+
+		lubCom[2] = new JButton();
+		lubCom[2].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lubCom[2].setText("4");
+		lubCom[2].setBounds(330, 100, 50, 50);
+		panel.add(lubCom[2]);
+		
+		lubCom[1] = new JButton();
+		lubCom[1].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lubCom[1].setText("4");
+		lubCom[1].setBounds(230, 100, 50, 50);
+		panel.add(lubCom[1]);
+
+		lubCom[0] = new JButton();
+		lubCom[0].setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lubCom[0].setText("4");
+		lubCom[0].setBounds(130, 100, 50, 50);
+		panel.add(lubCom[0]);
+		
+
+	}
+	
+	public void inisialisasi(){
+		for(int i=0;i<5;i++){
+	        dakonuser[i] = Integer.parseInt(lubUser[i].getText());
+	    }
+	    
+		lumbunguser = Integer.parseInt(lumUser.getText());
+	    
+	    for(int i=0;i<5;i++){
+	    	dakoncomp[i] = Integer.parseInt(lubCom[i].getText());
+	    }
+	    
+	    lumbungcom = Integer.parseInt(lumCom.getText());
+		}
+		
+	public void putar(int index){
+			int jumlah;
+			int n;
+			//if(index==1&&index<=6){
+			while (true){
+				jumlah = dakonuser[index];
+				dakonuser[index] = 0;
+				
+				for(n=jumlah;n>0;n--){
+					index++;
+					dakonuser[index]+=1;
+					lumbunguser+=1;
+					dakoncomp[index]+=1;
+					}
+					
+				if(dakonuser[index]==1||dakoncomp[index]==1){
+					break;
+				}
+				/*if(index==7){
+					if(n==0&&index==0)
+					index=13;
+					else
+					break;
+					
+				} */
+			}
+			
+			
+		
+		
+		/*public void putarCo(int index){
+			int jumlah;
+			int i;
+			
+			while (true){
+				jumlah = dakon[index];
+				dakon[index] = 0;
+				
+				if(index>13){
+					index = 0;
+				}
+				
+				for(i=jumlah;i>0;i--){
+					index++;
+					
+					if(index>13){
+						index = 0;
+					}
+					
+					if(index!=7){
+					dakon[index]+=1;
+					}
+				}
+				if(dakon[index]==1){
+					break;
+				}
+				if(index==0||index==7){
+					if(i==7&&index==7){
+						index=13;
+					}
+					else
+					break;
+				}
+			}
+			
+		}*/
+	
+	}
+}
+
+
