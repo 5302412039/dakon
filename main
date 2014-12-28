@@ -1,0 +1,29 @@
+package dakon;
+
+
+public class Main {
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+//		View_versi2 v = new View_versi2();
+//		v.setVisible(true);
+
+		
+//		view v = new view();
+//		v.setVisible(true);
+				
+		Trial v = new Trial();
+		v.setVisible(true);
+		
+//		Coba v = new Coba();
+//		v.setVisible(true);
+				
+		
+		
+		
+		
+
+	}
+
+}
